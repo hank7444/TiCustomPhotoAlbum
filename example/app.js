@@ -3,37 +3,14 @@
 // to test out the module and to provide instructions 
 // to users on how to use it by example.
 
+var customPhotoAlbumModule = require('ti.customphotoalbum');
 
-// open a single window
-var win = Ti.UI.createWindow({
-	backgroundColor:'white'
+var image = Ti.UI.createImageView({
+	image: '/images/mike1.jpg',
+	width: 320,
+	top: 0
 });
-var label = Ti.UI.createLabel();
-win.add(label);
-win.open();
+				
+var blob = image.getImage();
 
-// TODO: write your module tests here
-var TiCustomPhotoAlbum = require('ti.customphotoalbum');
-Ti.API.info("module is => " + TiCustomPhotoAlbum);
-
-label.text = TiCustomPhotoAlbum.example();
-
-Ti.API.info("module exampleProp is => " + TiCustomPhotoAlbum.exampleProp);
-TiCustomPhotoAlbum.exampleProp = "This is a test value";
-
-if (Ti.Platform.name == "android") {
-	var proxy = TiCustomPhotoAlbum.createExample({
-		message: "Creating an example Proxy",
-		backgroundColor: "red",
-		width: 100,
-		height: 100,
-		top: 100,
-		left: 150
-	});
-
-	proxy.printMessage("Hello world!");
-	proxy.message = "Hi world!.  It's me again.";
-	proxy.printMessage("Hello world!");
-	win.add(proxy);
-}
-
+customPhotoAlbumModule.addCustomAlbumAndSaveImage(blob, "MyCustomAlbum！");
